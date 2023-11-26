@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
+    [SerializeField] private Enemy _enemy;
     [SerializeField] private List<Transform> _spawnPointsPositions;
 
     private void Start()
@@ -20,7 +20,7 @@ public class SpawnEnemy : MonoBehaviour
         {
             yield return waitForSeconds;
 
-            Enemy newEnemy = Instantiate(enemy, _spawnPointsPositions[Random.Range(0,_spawnPointsPositions.Count)].transform.position, Quaternion.identity);
+            Enemy newEnemy = Instantiate(_enemy, _spawnPointsPositions[Random.Range(0,_spawnPointsPositions.Count)].transform.position, Quaternion.identity);
             newEnemy.SetDirection(Vector3.up);
         }
     }
