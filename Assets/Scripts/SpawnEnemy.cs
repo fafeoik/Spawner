@@ -14,7 +14,9 @@ public class SpawnEnemy : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        var waitForSeconds = new WaitForSeconds(2f);
+        float waitSecondsAmount = 2.0f;
+
+        var waitForSeconds = new WaitForSeconds(waitSecondsAmount);
 
         while (true)
         {
