@@ -6,8 +6,9 @@ public class TargetMover : MonoBehaviour
 {
     [SerializeField] private List<Transform> _points;
 
+    [SerializeField] private int _speed;
+
     private int _currentPointIndex = 0;
-    private int _speed = 3;
 
     private Coroutine _targetMoveCoroutine;
 
