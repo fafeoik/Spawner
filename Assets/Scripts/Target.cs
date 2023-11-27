@@ -7,7 +7,6 @@ public class Target : MonoBehaviour
     [SerializeField] private List<Transform> _points;
 
     private int _currentPointIndex = 0;
-
     private int _speed = 3;
 
     private void Update()
