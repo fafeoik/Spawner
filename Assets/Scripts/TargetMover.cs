@@ -9,13 +9,32 @@ public class TargetMover : MonoBehaviour
     private int _currentPointIndex = 0;
     private int _speed = 3;
 
-    private void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _points[_currentPointIndex].position, _speed * Time.deltaTime);
+    private Coroutine _targetMoveCoroutine;
 
-        if(transform.position == _points[_currentPointIndex].position)
+    private void Start()
+    {
+        _targetMoveCoroutine = StartCoroutine(Move());
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(_targetMoveCoroutine);
+    }
+
+    private IEnumerator Move()
+    {
+        bool isWorking = true;
+
+        while (isWorking)
         {
-            ChangeCurrentPoint();
+            transform.position = Vector3.MoveTowards(transform.position, _points[_currentPointIndex].position, _speed * Time.deltaTime);
+
+            if (transform.position == _points[_currentPointIndex].position)
+            {
+                ChangeCurrentPoint();
+            }
+
+            yield return null;
         }
     }
 

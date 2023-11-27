@@ -8,9 +8,28 @@ public class EnemyMover : MonoBehaviour
 
     private Transform _target;
 
-    private void Update()
+    private Coroutine _enemyMoveCoroutine;
+
+    private void Start()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
+        _enemyMoveCoroutine = StartCoroutine(Move());
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(_enemyMoveCoroutine);
+    }
+
+    private IEnumerator Move()
+    {
+        bool isWorking = true;
+
+        while (isWorking)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
+
+            yield return null;
+        }
     }
 
     public void SetTarget(Transform target)
