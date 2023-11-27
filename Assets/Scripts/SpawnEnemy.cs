@@ -6,9 +6,16 @@ public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] private List<SpawnPoint> _spawnPointsPositions;
 
+    private Coroutine _spawnCoroutine;
+
     private void Start()
     {
-        StartCoroutine(Spawn());
+        _spawnCoroutine = StartCoroutine(Spawn());
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(_spawnCoroutine);
     }
 
     private IEnumerator Spawn()
@@ -23,8 +30,7 @@ public class SpawnEnemy : MonoBehaviour
 
             SpawnPoint spawnPoint = _spawnPointsPositions[Random.Range(0, _spawnPointsPositions.Count)];
 
-            Enemy newEnemy = Instantiate(spawnPoint.Enemy, spawnPoint.transform.position, Quaternion.identity);
-            newEnemy.SetTarget(spawnPoint.Target);
+            spawnPoint.SpawnEnemy();
         }
     }
 }

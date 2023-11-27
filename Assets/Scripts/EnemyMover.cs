@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyMover : MonoBehaviour
 {
+    [SerializeField] private int _speed;
+
     private Transform _target;
-    private int _speed = 2;
 
     private void Update()
     {

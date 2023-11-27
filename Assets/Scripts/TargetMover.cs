@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : MonoBehaviour
+public class TargetMover : MonoBehaviour
 {
     [SerializeField] private List<Transform> _points;
 
@@ -23,9 +23,6 @@ public class Target : MonoBehaviour
     {
         _currentPointIndex++;
 
-        if (_currentPointIndex >= _points.Count)
-        {
-            _currentPointIndex = 0;
-        }
+        _currentPointIndex = _currentPointIndex % _points.Count;
     }
 }
